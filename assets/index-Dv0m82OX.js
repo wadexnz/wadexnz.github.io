@@ -4160,14 +4160,13 @@ void main() {
 
     // Mirrored hills on left and right edges, scrolling with grid
     float scrolledZ = pos.z + uOffset;
-    float edgeDist = abs(pos.x) / 1500.0; // 0 at center, 1 at edge (half of 3000 width)
-    float edgeMask = smoothstep(0.0, 0.5, edgeDist); // hills ramp up quickly from center
-    float hill1 = sin(scrolledZ * 0.008) * 600.0;
-    float hill2 = sin(scrolledZ * 0.02 + 2.0) * 240.0;
+    float edgeDist = abs(pos.x) / 1500.0; // 0 at center, 1 at edge
+    float edgeMask = smoothstep(0.0, 1.0, edgeDist);
+    float hill1 = sin(scrolledZ * 0.008) * 2000.0;
     // Fade hills to zero near the buildings to prevent intersection
     float worldZ = (modelMatrix * vec4(pos, 1.0)).z;
     float depthFade = smoothstep(1850.0, 1600.0, worldZ);
-    pos.y += (hill1 + hill2) * edgeMask * edgeMask * uFlux * depthFade;
+    pos.y += (hill1) * edgeMask * uFlux * depthFade;
 
     vHeight = pos.y;
     vWorldPos = (modelMatrix * vec4(pos, 1.0)).xyz;
@@ -4211,7 +4210,7 @@ void main() {
 
     gl_FragColor = vec4(color, 1.0);
 }
-`,Ot={WIDTH:3e3,DEPTH:5e3,SEGMENTS:128,FOV:65,NEAR:1,FAR:6e3,CAMERA_HEIGHT:60,LOOK_AHEAD:300,BASE_SPEED:10,FLUX_SPEED_MULTIPLIER:4e3,COLOR_COOLDOWN:.15},Ci={RADIUS:150,WIDTH_SEGMENTS:32,HEIGHT_SEGMENTS:16,DISTANCE:1800,HEIGHT:40},Pi={COUNT:5,WIDTH:4e3,HEIGHT:300,DISTANCE:1900,Y_OFFSET:100},Li={WIDTH:4e3,HEIGHT:800,DISTANCE:1850,Y_OFFSET:140,CENTER_GAP:.25},vr={WIDTH:4e3,HEIGHT:800,DISTANCE:2200,Y_OFFSET:150},Bn=[{grid:new ye(16711935),sun:new ye(16737792)},{grid:new ye(65535),sun:new ye(16711782)},{grid:new ye(16724889),sun:new ye(16763904)},{grid:new ye(6684927),sun:new ye(16724736)},{grid:new ye(65433),sun:new ye(16737843)}];class ym{constructor(e){this.offset=0,this.currentPaletteIndex=0,this.renderer=e,this.camera=this.buildCamera(),this.scene=new ya,this.scene.background=new ye(327688);const{mesh:t,material:n}=this.buildGrid();this.gridMesh=t,this.gridMaterial=n,this.scene.add(this.gridMesh);const{mesh:r,material:s}=this.buildSky();this.skyMesh=r,this.skyMaterial=s,this.scene.add(this.skyMesh),this.sunMesh=this.buildSun(),this.scene.add(this.sunMesh);const{mesh:a,material:o}=this.buildLasers();this.laserMesh=a,this.laserMaterial=o,this.scene.add(this.laserMesh);const{mesh:c,material:l}=this.buildBuildings();this.buildingsMesh=c,this.buildingsMaterial=l,this.scene.add(this.buildingsMesh),this.colorClock=new Xn,window.addEventListener("resize",()=>this.resize())}buildCamera(){const e=window.innerWidth/window.innerHeight,t=new Dt(Ot.FOV,e,Ot.NEAR,Ot.FAR);return t.position.set(0,Ot.CAMERA_HEIGHT,0),t.lookAt(new I(0,20,Ot.LOOK_AHEAD)),t}buildGrid(){const e=new pn(Ot.WIDTH,Ot.DEPTH,Ot.SEGMENTS,Ot.SEGMENTS);e.rotateX(-Math.PI/2);const t=Bn[0],n=new xt({vertexShader:Mm,fragmentShader:Em,uniforms:{uTime:{value:0},uFlux:{value:0},uOffset:{value:0},uGridColor:{value:t.grid.clone()}}}),r=new vt(e,n);return r.position.set(0,0,Ot.DEPTH*.5),{mesh:r,material:n}}buildSun(){const e=new ba(Ci.RADIUS,Ci.WIDTH_SEGMENTS,Ci.HEIGHT_SEGMENTS),t=Bn[0],n=new xt({vertexShader:`
+`,Ot={WIDTH:3e3,DEPTH:5e3,SEGMENTS:128,FOV:60,NEAR:1,FAR:6e3,CAMERA_HEIGHT:60,LOOK_AHEAD:300,BASE_SPEED:0,FLUX_SPEED_MULTIPLIER:4e3,COLOR_COOLDOWN:0},Ci={RADIUS:150,WIDTH_SEGMENTS:32,HEIGHT_SEGMENTS:16,DISTANCE:1800,HEIGHT:40},Pi={COUNT:5,WIDTH:4e3,HEIGHT:300,DISTANCE:1900,Y_OFFSET:100},Li={WIDTH:4e3,HEIGHT:800,DISTANCE:1850,Y_OFFSET:140,CENTER_GAP:.25},vr={WIDTH:4e3,HEIGHT:800,DISTANCE:2200,Y_OFFSET:150},Bn=[{grid:new ye(16711935),sun:new ye(16737792)},{grid:new ye(65535),sun:new ye(16711782)},{grid:new ye(16724889),sun:new ye(16763904)},{grid:new ye(6684927),sun:new ye(16724736)},{grid:new ye(65433),sun:new ye(16737843)}];class ym{constructor(e){this.offset=0,this.currentPaletteIndex=0,this.renderer=e,this.camera=this.buildCamera(),this.scene=new ya,this.scene.background=new ye(327688);const{mesh:t,material:n}=this.buildGrid();this.gridMesh=t,this.gridMaterial=n,this.scene.add(this.gridMesh);const{mesh:r,material:s}=this.buildSky();this.skyMesh=r,this.skyMaterial=s,this.scene.add(this.skyMesh),this.sunMesh=this.buildSun(),this.scene.add(this.sunMesh);const{mesh:a,material:o}=this.buildLasers();this.laserMesh=a,this.laserMaterial=o,this.scene.add(this.laserMesh);const{mesh:c,material:l}=this.buildBuildings();this.buildingsMesh=c,this.buildingsMaterial=l,this.scene.add(this.buildingsMesh),this.colorClock=new Xn,window.addEventListener("resize",()=>this.resize())}buildCamera(){const e=window.innerWidth/window.innerHeight,t=new Dt(Ot.FOV,e,Ot.NEAR,Ot.FAR);return t.position.set(0,Ot.CAMERA_HEIGHT,0),t.lookAt(new I(0,20,Ot.LOOK_AHEAD)),t}buildGrid(){const e=new pn(Ot.WIDTH,Ot.DEPTH,Ot.SEGMENTS,Ot.SEGMENTS);e.rotateX(-Math.PI/2);const t=Bn[0],n=new xt({vertexShader:Mm,fragmentShader:Em,uniforms:{uTime:{value:0},uFlux:{value:0},uOffset:{value:0},uGridColor:{value:t.grid.clone()}}}),r=new vt(e,n);return r.position.set(0,0,Ot.DEPTH*.5),{mesh:r,material:n}}buildSun(){const e=new ba(Ci.RADIUS,Ci.WIDTH_SEGMENTS,Ci.HEIGHT_SEGMENTS),t=Bn[0],n=new xt({vertexShader:`
                 uniform float uFlux;
                 varying vec2 vUv;
                 void main() {
@@ -4226,16 +4225,10 @@ void main() {
                 uniform float uFlux;
                 varying vec2 vUv;
                 void main() {
-                    // Horizontal scanline bands — only in bottom half
-                    float scanline = smoothstep(0.46, 0.5, abs(fract(vUv.y * 10.0) - 0.5));
-                    // Fade: bottom dark, top bright (half-set sun)
-                    float fade = smoothstep(0.25, 0.6, vUv.y);
-                    // Brightness pulses strongly with flux
                     float brightness = 0.4 + uFlux * 3.0;
-                    vec3 color = uSunColor * (0.4 + fade * 0.6) * brightness;
-                    // Cut scanline gaps in bottom portion
-                    float gap = mix(1.0 - scanline * 0.7, 1.0, fade);
-                    gl_FragColor = vec4(color * gap, 1.0);
+                    float fade = smoothstep(0.2, 0.65, vUv.y);
+                    vec3 color = uSunColor * (0.3 + fade * 0.7) * brightness;
+                    gl_FragColor = vec4(color, 1.0);
                 }
             `,uniforms:{uSunColor:{value:t.sun.clone()},uFlux:{value:0}}}),r=new vt(e,n);return r.position.set(0,Ci.HEIGHT,Ci.DISTANCE),r}buildSky(){const e=new pn(vr.WIDTH,vr.HEIGHT),t=Bn[0],n=new xt({vertexShader:`
                 varying vec2 vUv;

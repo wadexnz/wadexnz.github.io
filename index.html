@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Wade Norman, backend and integrations engineer in Auckland, New Zealand. Selected work: arbitr-sdk, CaraLore and Beat Tube.">
+    <meta name="description" content="Wade Norman, backend and integrations engineer in Auckland, New Zealand. Work at Arbitr (formerly Straker) and personal projects.">
     <meta name="theme-color" content="#ffffff">
     <title>Wade Norman — Backend and Integrations Engineer</title>
     <style>
@@ -83,6 +83,20 @@
 
       article p { color: #454f49; }
 
+      .meta {
+        margin-bottom: 0.4rem;
+        color: #5d655f;
+        font-size: 0.9rem;
+      }
+
+      article ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        color: #454f49;
+      }
+
+      article li + li { margin-top: 0.35rem; }
+
       a {
         color: #245b42;
         text-decoration-thickness: 1px;
@@ -143,18 +157,30 @@
 
       <p class="intro">I build reliable APIs, SDKs and enterprise integrations.</p>
 
-      <section class="projects" aria-labelledby="projects-heading">
-        <h2 class="label" id="projects-heading">Selected projects</h2>
+      <section class="projects" aria-labelledby="work-heading">
+        <h2 class="label" id="work-heading">Work</h2>
         <article>
-          <h3>arbitr-sdk</h3>
-          <p>The official Python SDK and CLI for the Arbitr API. I'm its main author; my commits are under my work account (wade-at-straker).</p>
-          <a class="project-link" href="https://pypi.org/project/arbitr-sdk/">PyPI <span aria-hidden="true">↗</span></a>
-          &nbsp;·&nbsp;
-          <a class="project-link" href="https://github.com/strakergroup/arbitr-python">Source <span aria-hidden="true">↗</span></a>
+          <h3>Arbitr (formerly Straker)</h3>
+          <p class="meta">Product Engineer, Mar 2026 – present · Software Engineer, Jul 2019 – Mar 2026</p>
+          <ul>
+            <li>Main maintainer of the company’s published Slack app since 2023, now leading its Python rebuild.</li>
+            <li>Built and published the official Python SDK and CLI, arbitr-sdk. My commits are under my work account (wade-at-straker). <a href="https://pypi.org/project/arbitr-sdk/">PyPI <span aria-hidden="true">↗</span></a> · <a href="https://github.com/strakergroup/arbitr-python">Source <span aria-hidden="true">↗</span></a></li>
+            <li>Added an MCP endpoint to the public API, reusing its existing API-key authentication and rate limits.</li>
+            <li>Maintained the Microsoft Teams app, including its move to the Microsoft 365 Agents SDK.</li>
+            <li>Started on translation editors and media tools (2019–2022).</li>
+          </ul>
         </article>
+      </section>
+
+      <section class="projects" aria-labelledby="projects-heading">
+        <h2 class="label" id="projects-heading">Personal projects</h2>
         <article>
           <h3>CaraLore</h3>
           <p>A reading companion that answers only from text up to your current position.<br>Private; walkthrough on request.</p>
+        </article>
+        <article>
+          <h3>NZ Expense Agent</h3>
+          <p>A personal finance app on NZ open banking (Akahu), with an MCP server for AI assistants.<br>Private; walkthrough on request.</p>
         </article>
         <article>
           <h3>Beat Tube</h3>
